@@ -232,12 +232,12 @@ class ModalManager {
    */
   _openProject(trigger) {
     const projectId = trigger?.getAttribute('data-project-id');
-    if (!projectId || !window.projectsData || !window.projectsData[projectId]) {
+    if (!projectId || !window.PROJECTS_DATA || !window.PROJECTS_DATA[projectId]) {
       Logger.WARN(`Project with id ${projectId} not found`);
       return;
     }
     
-    const project = window.projectsData[projectId];
+    const project = window.PROJECTS_DATA[projectId];
     const modalTitle = document.getElementById('projectModalTitle');
     const modalContent = document.getElementById('projectModalContent');
     const modalCategory = document.getElementById('projectModalCategory');

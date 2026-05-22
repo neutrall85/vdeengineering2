@@ -903,14 +903,6 @@ body.app-ready>footer {
   flex-direction: column;
 }
 
-/* .card-additional-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary, #6c757d);
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  line-height: 1.4;
-} */
-
 .card::before {
   content: '';
   position: absolute;

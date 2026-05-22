@@ -1,97 +1,12 @@
-window.projectsData = {
-  1: {
-    title: 'Реализация функции ADS-B Out v.2 (CNS/ATM)',
-    category: 'Модернизация',
-    shortDescription: 'Внедрение современной системы наблюдения и связи для повышения безопасности полётов.',
-    details: [
-      'Оформлена конструкторская, эксплуатационная и сертификационная документация, программы и методики испытаний.',
-      'Установлены самолетный ответчик, спутниковая навигационная система GPS/SBAS',
-      'Проведены наземные и летные испытания',
-      'Получен ДСТ ФАВТ, выпущен отдельный бюллетень для модернизации флота авиакомпании'
-    ],
-    images: [
-      'assets/images/Projects/ADS-B_Out/track.png',
-      'assets/images/Projects/ADS-B_Out/view.png',
-      'assets/images/Projects/ADS-B_Out/block.png',
-      'assets/images/Projects/ADS-B_Out/Display.png'
-    ]
-  },
-  2: {
-    title: 'Уточнение схемы окраски самолёта Ан-124-100',
-    category: 'Модификация',
-    shortDescription: 'Замена импортных ЛКМ на российские аналоги с полным инженерным сопровождением.',
-    details: [
-      'Введение в КД и ТД новых импортозамещённых российских лакокрасочных материалов (ЛКМ)',
-      'Инженерные анализы',
-      'Дополнения в ЭД',
-      'Одобрение второстепенного изменения'
-    ],
-    images: [
-      'assets/images/Projects/An-124-100_paint/An-124-100_paint.jpg',
-      'assets/images/Projects/An-124-100_paint/dwg1.jpg',
-      'assets/images/Projects/An-124-100_paint/dwg2.jpg'
-    ]
-  },
-  3: {
-    title: 'Модификации самолетов иностранного производства',
-    category: 'Модификация',
-    shortDescription: 'Комплекс второстепенных изменений для Boeing 737, RRJ-95, A330, Embraer и ATR 72, обеспечивающих дальнейшую эксплуатация.',
-    details: [
-      'Самолёт Boeing 737-400 с альтернативным датчиком обнаружения перегрева, устанавливаемым в зоне размещения Left Aft Air Condition Pack самолета – 1 второстепенное изменение',
-      'Самолёт RRJ-95 с альтернативными кислородными масками для использования с переносными кислородными баллонами – 1 второстепенное изменение',
-      'Самолёт А330 с альтернативными чехлами и мягкостями на креслах бизнес и экономического класса – 2 второстепенных изменения',
-      'Самолёт Embraer ERJ 170-100 LR с альтернативными чистящими средствами от известковых отложений для кранов системы водоснабжения – 1 второстепенное изменение',
-      'Самолёт Embraer ERJ 170-100 LR с альтернативным чистящим средством DOT 111/113 для кранов системы водоснабжения - 1 второстепенное изменение',
-      'Самолёт RRJ-95 с альтернативными депрессорами уплотнений створок реверса двигателя SAM-146 – 1 второстепенное изменение',
-      'Самолет ATR 72-212А с альтернативной защитой линзы нижнего проблескового маяка предотвращения столкновений – 1 второстепенное изменение'
-    ],
-    images: [
-      'assets/images/Projects/mods/seats.jpg',
-      'assets/images/Projects/mods/dwg.png',
-      'assets/images/Projects/mods/oxygen.jpg',
-      'assets/images/Projects/mods/wheel.png'
-    ]  
-  },
-  4: {
-    title: 'Ремонты самолётов иностранного производства',
-    category: 'Ремонт',
-    shortDescription: 'Выполнение широкого спектра ремонтов различных узлов и агрегатов самолётов Airbus, Boeing, RRJ и Embraer.',
-    details: [
-      'Ремонт вмятин капота воздухозаборника А319',
-      'Ремонт носовой части воздухозаборника A321',
-      'Ремонт стойки жесткости ветрового стекла A319',
-      'Ремонт композитной панели (Belly Fairing Access) A320',
-      'Ремонт внутреннего кожуха и обтекателя разделителя двигателя CFM56-5B5/P, установленного на  самолет A319',
-      'Ремонт правого предкрылка А319',
-      'Ремонт роликовых балок (Roller Tracks) A319',
-      'Ремонт обшивки внутренней панели правой нижней створки реверса двигателя', 
-      'Ремонт левой створки капота вентиляторного контура двигателя',
-      'Ремонт царапины и вмятин обшивки хвостовой части фюзеляжа',
-      'Ремонт предкрылка (SLAT #5) B737',
-      'Ремонт обтекателя элерона B737',
-      'Ремонт сопла SAM-146 RRJ-95',
-      'Ремонт верхнего пояса усиливающего кольца выреза под шасси B737',
-      'Ремонт внутренней обшивки створки реверса B737',
-      'Ремонт коррозии на стенках балок центральной секции крыла B737',
-      'Ремонт трещины балки пола по шп. STA 695 B737'
-    ],
-    images: [
-      'assets/images/Projects/repairs/engine_pod.jpg',
-      'assets/images/Projects/repairs/defect.png',
-      'assets/images/Projects/repairs/roller.png'
-    ]
-  }
-};
-
 // ------------------------------------------------------------
 //  ProjectRenderer – рендеринг карточек проектов
 // ------------------------------------------------------------
 class ProjectRenderer {
-  constructor(projectsData) {
+  constructor(PROJECTS_DATA) {
     // Нормализация: добавляем id из ключа объекта
-    this.projectsData = {};
-    Object.entries(projectsData).forEach(([id, project]) => {
-      this.projectsData[id] = { ...project, id: parseInt(id, 10) };
+    this.PROJECTS_DATA = {};
+    Object.entries(PROJECTS_DATA).forEach(([id, project]) => {
+      this.PROJECTS_DATA[id] = { ...project, id: parseInt(id, 10) };
     });
     this.loaded = false;
     this.cardStaggerMs = window.CONFIG?.ANIMATION?.CARD_STAGGER_MS || 50;
@@ -104,7 +19,7 @@ class ProjectRenderer {
       return;
     }
 
-    const projectsList = Object.values(this.projectsData);
+    const projectsList = Object.values(this.PROJECTS_DATA);
     if (projectsList.length === 0) {
       container.innerHTML = '<p class="no-projects">Проекты временно недоступны</p>';
       return;
@@ -249,8 +164,8 @@ function initProjectsPage() {
   // Очищаем статический HTML
   gridContainer.innerHTML = '';
 
-  if (window.projectsData) {
-    _projectsPageHandlers.renderer = new ProjectRenderer(window.projectsData);
+  if (window.PROJECTS_DATA) {
+    _projectsPageHandlers.renderer = new ProjectRenderer(window.PROJECTS_DATA);
     _projectsPageHandlers.renderer.render(gridContainer);
   } else {
     gridContainer.innerHTML = '<p class="no-projects">Данные проектов не загружены</p>';
