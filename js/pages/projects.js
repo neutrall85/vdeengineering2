@@ -1,6 +1,8 @@
 window.projectsData = {
   1: {
     title: 'Реализация функции ADS-B Out v.2 (CNS/ATM)',
+    category: 'Модернизация',
+    shortDescription: 'Внедрение современной системы наблюдения и связи для повышения безопасности полётов.',
     details: [
       'Оформлена конструкторская, эксплуатационная и сертификационная документация, программы и методики испытаний.',
       'Установлены самолетный ответчик, спутниковая навигационная система GPS/SBAS',
@@ -12,11 +14,12 @@ window.projectsData = {
       'assets/images/Projects/ADS-B_Out/view.png',
       'assets/images/Projects/ADS-B_Out/block.png',
       'assets/images/Projects/ADS-B_Out/Display.png'
-    ],
-    category: 'Модернизация'
+    ]
   },
   2: {
     title: 'Уточнение схемы окраски самолёта Ан-124-100',
+    category: 'Модификация',
+    shortDescription: 'Замена импортных ЛКМ на российские аналоги с полным инженерным сопровождением.',
     details: [
       'Введение в КД и ТД новых импортозамещённых российских лакокрасочных материалов (ЛКМ)',
       'Инженерные анализы',
@@ -24,26 +27,59 @@ window.projectsData = {
       'Одобрение второстепенного изменения'
     ],
     images: [
-      'assets/images/Projects/An-124-100_paint/An-124-100_paint.png',
-      'assets/images/Projects/An-124-100_paint/dwg1.webp',
+      'assets/images/Projects/An-124-100_paint/An-124-100_paint.jpg',
+      'assets/images/Projects/An-124-100_paint/dwg1.jpg',
       'assets/images/Projects/An-124-100_paint/dwg2.jpg'
-    ],
-    category: 'Модификация'
+    ]
   },
   3: {
-    title: 'Уточнение схемы окраски самолёта Ан-124-100',
+    title: 'Модификации самолетов иностранного производства',
+    category: 'Модификация',
+    shortDescription: 'Комплекс второстепенных изменений для Boeing 737, RRJ-95, A330, Embraer и ATR 72, обеспечивающих дальнейшую эксплуатация.',
     details: [
-      'Введение в КД и ТД новых импортозамещённых российских лакокрасочных материалов (ЛКМ)',
-      'Инженерные анализы',
-      'Дополнения в ЭД',
-      'Одобрение второстепенного изменения'
+      'Самолёт Boeing 737-400 с альтернативным датчиком обнаружения перегрева, устанавливаемым в зоне размещения Left Aft Air Condition Pack самолета – 1 второстепенное изменение',
+      'Самолёт RRJ-95 с альтернативными кислородными масками для использования с переносными кислородными баллонами – 1 второстепенное изменение',
+      'Самолёт А330 с альтернативными чехлами и мягкостями на креслах бизнес и экономического класса – 2 второстепенных изменения',
+      'Самолёт Embraer ERJ 170-100 LR с альтернативными чистящими средствами от известковых отложений для кранов системы водоснабжения – 1 второстепенное изменение',
+      'Самолёт Embraer ERJ 170-100 LR с альтернативным чистящим средством DOT 111/113 для кранов системы водоснабжения - 1 второстепенное изменение',
+      'Самолёт RRJ-95 с альтернативными депрессорами уплотнений створок реверса двигателя SAM-146 – 1 второстепенное изменение',
+      'Самолет ATR 72-212А с альтернативной защитой линзы нижнего проблескового маяка предотвращения столкновений – 1 второстепенное изменение'
     ],
     images: [
-      'assets/images/Projects/An-124-100_paint/An-124-100_paint.png',
-      'assets/images/Projects/An-124-100_paint/dwg1.webp',
-      'assets/images/Projects/An-124-100_paint/dwg2.jpg'
+      'assets/images/Projects/mods/seats.jpg',
+      'assets/images/Projects/mods/dwg.png',
+      'assets/images/Projects/mods/oxygen.jpg',
+      'assets/images/Projects/mods/wheel.png'
+    ]  
+  },
+  4: {
+    title: 'Ремонты самолётов иностранного производства',
+    category: 'Ремонт',
+    shortDescription: 'Выполнение широкого спектра ремонтов различных узлов и агрегатов самолётов Airbus, Boeing, RRJ и Embraer.',
+    details: [
+      'Ремонт вмятин капота воздухозаборника А319',
+      'Ремонт носовой части воздухозаборника A321',
+      'Ремонт стойки жесткости ветрового стекла A319',
+      'Ремонт композитной панели (Belly Fairing Access) A320',
+      'Ремонт внутреннего кожуха и обтекателя разделителя двигателя CFM56-5B5/P, установленного на  самолет A319',
+      'Ремонт правого предкрылка А319',
+      'Ремонт роликовых балок (Roller Tracks) A319',
+      'Ремонт обшивки внутренней панели правой нижней створки реверса двигателя', 
+      'Ремонт левой створки капота вентиляторного контура двигателя',
+      'Ремонт царапины и вмятин обшивки хвостовой части фюзеляжа',
+      'Ремонт предкрылка (SLAT #5) B737',
+      'Ремонт обтекателя элерона B737',
+      'Ремонт сопла SAM-146 RRJ-95',
+      'Ремонт верхнего пояса усиливающего кольца выреза под шасси B737',
+      'Ремонт внутренней обшивки створки реверса B737',
+      'Ремонт коррозии на стенках балок центральной секции крыла B737',
+      'Ремонт трещины балки пола по шп. STA 695 B737'
     ],
-    category: 'Ремонты'
+    images: [
+      'assets/images/Projects/repairs/engine_pod.jpg',
+      'assets/images/Projects/repairs/defect.png',
+      'assets/images/Projects/repairs/roller.png'
+    ]
   }
 };
 
@@ -93,7 +129,11 @@ class ProjectRenderer {
     const safeTitle = sanitizer ? sanitizer.escapeHtml(project.title) : project.title;
     const safeCategory = sanitizer ? sanitizer.escapeHtml(project.category) : project.category;
     const previewImage = (project.images && project.images[0]) || 'assets/images/placeholder.jpg';
-    const excerpt = project.details && project.details[0] ? project.details[0] : 'Подробнее о проекте...';
+    
+    // Дополнительная строка описания (shortDescription)
+    const additionalDesc = project.shortDescription 
+      ? (sanitizer ? sanitizer.escapeHtml(project.shortDescription) : project.shortDescription)
+      : '';
 
     const article = document.createElement('article');
     article.className = 'project-card card fade-in';
@@ -123,9 +163,13 @@ class ProjectRenderer {
     title.className = 'card-title';
     title.textContent = safeTitle;
 
-    const desc = document.createElement('p');
-    desc.className = 'card-desc';
-    desc.textContent = sanitizer ? sanitizer.escapeHtml(excerpt) : excerpt;
+    // Дополнительный параграф (только shortDescription)
+    let additionalDescElem = null;
+    if (additionalDesc) {
+      additionalDescElem = document.createElement('p');
+      additionalDescElem.className = 'card-desc';   // ← используем существующий класс
+      additionalDescElem.textContent = additionalDesc;
+    }
 
     const btn = document.createElement('button');
     btn.className = 'news-card-link';
@@ -135,7 +179,7 @@ class ProjectRenderer {
 
     contentDiv.appendChild(categorySpan);
     contentDiv.appendChild(title);
-    contentDiv.appendChild(desc);
+    if (additionalDescElem) contentDiv.appendChild(additionalDescElem);
     contentDiv.appendChild(btn);
 
     article.appendChild(imgContainer);

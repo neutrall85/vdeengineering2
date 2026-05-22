@@ -895,13 +895,21 @@ body.app-ready>footer {
   background: var(--vd-light-gray);
   height: 270px;
   border-radius: 20px;
-  padding: clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(1.0rem, 3vw, 1.5rem);
   border: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
+
+/* .card-additional-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary, #6c757d);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+} */
 
 .card::before {
   content: '';
@@ -940,6 +948,10 @@ body.app-ready>footer {
 
 
 /* ==================== SERVICES ==================== */
+.service-card--wide {
+  grid-column: span 2;
+}
+
 .service-card-link,
 .service-card-link * {
   text-decoration: none;
@@ -3531,7 +3543,7 @@ img.loading + .image-placeholder {
   align-items: center;
   gap: 0.5rem;
   transition: transform var(--duration-normal) var(--ease-elastic), gap var(--duration-normal) var(--ease-elastic);
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  font-size: clamp(1.2rem, 1.2vw, 1.4rem);
   background: none;
   border: none;
   cursor: pointer;
@@ -3545,8 +3557,8 @@ img.loading + .image-placeholder {
 }
 
 .doc-view-link svg {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   fill: currentColor;
 }
 
@@ -5737,7 +5749,11 @@ img.loading + .image-placeholder {
   height: 24px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
+.service-card--wide {
+    grid-column: auto; /* или span 1, по умолчанию */
+  }
+
   .user-notice-banner {
     padding: 1rem;
   }
