@@ -5,6 +5,7 @@
 class HeroSlideshow {
   constructor() {
     this.container = document.querySelector('.slideshow-container');
+    // Если контейнера нет, класс не должен инициализироваться дальше
     if (!this.container) return;
 
     this.slides = this.container.querySelectorAll('.slideshow-slide');
@@ -15,12 +16,18 @@ class HeroSlideshow {
     this.currentSlide = 0;
     this.slideInterval = 4000;
     this.intervalId = null;
+    this.eventListeners = [];
+    this.isDestroyed = false; // Флаг состояния
 
     this.init();
   }
 
   init() {
-    if (this.slides.length <= 1) return;
+    if (this.slides.length <= 1) {
+      // Если слайд один, автовоспроизведение и кнопки не нужны
+      this.destroy(); 
+      return;
+    }
     this.startAutoPlay();
     this.attachEvents();
   }
@@ -28,39 +35,66 @@ class HeroSlideshow {
   attachEvents() {
     // Кнопки навигации
     if (this.prevBtn) {
-      this.prevBtn.addEventListener('click', () => {
+      const prevHandler = () => {
+        if (this.isDestroyed) return;
         this.pause();
         this.prevSlide();
         this.startAutoPlay();
-      });
+      };
+      this.prevBtn.addEventListener('click', prevHandler);
+      this.eventListeners.push({ element: this.prevBtn, event: 'click', handler: prevHandler });
     }
+
     if (this.nextBtn) {
-      this.nextBtn.addEventListener('click', () => {
+      const nextHandler = () => {
+        if (this.isDestroyed) return;
         this.pause();
         this.nextSlide();
         this.startAutoPlay();
-      });
+      };
+      this.nextBtn.addEventListener('click', nextHandler);
+      this.eventListeners.push({ element: this.nextBtn, event: 'click', handler: nextHandler });
     }
 
     // Индикаторы (точки)
     if (this.indicators) {
       this.indicators.forEach((ind, idx) => {
-        ind.addEventListener('click', () => {
+        const indicatorHandler = () => {
+          if (this.isDestroyed) return;
           this.pause();
           this.goToSlide(idx);
           this.startAutoPlay();
-        });
+        };
+        ind.addEventListener('click', indicatorHandler);
+        this.eventListeners.push({ element: ind, event: 'click', handler: indicatorHandler });
       });
     }
 
     // Пауза при наведении
-    this.container.addEventListener('mouseenter', () => this.pause());
-    this.container.addEventListener('mouseleave', () => this.resume());
+    const mouseenterHandler = () => {
+      if (this.isDestroyed) return;
+      this.pause();
+    };
+    
+    const mouseleaveHandler = () => {
+      if (this.isDestroyed) return;
+      this.resume();
+    };
+
+    this.container.addEventListener('mouseenter', mouseenterHandler);
+    this.container.addEventListener('mouseleave', mouseleaveHandler);
+
+    this.eventListeners.push(
+      { element: this.container, event: 'mouseenter', handler: mouseenterHandler },
+      { element: this.container, event: 'mouseleave', handler: mouseleaveHandler }
+    );
   }
 
   startAutoPlay() {
     if (this.intervalId) clearInterval(this.intervalId);
-    this.intervalId = setInterval(() => this.nextSlide(), this.slideInterval);
+    this.intervalId = setInterval(() => {
+      if (!this.isDestroyed) this.nextSlide();
+    }, this.slideInterval);
   }
 
   pause() {
@@ -71,7 +105,7 @@ class HeroSlideshow {
   }
 
   resume() {
-    if (!this.intervalId) this.startAutoPlay();
+    if (!this.intervalId && !this.isDestroyed) this.startAutoPlay();
   }
 
   prevSlide() {
@@ -87,6 +121,8 @@ class HeroSlideshow {
   }
 
   goToSlide(index) {
+    if (!this.slides[this.currentSlide] || !this.slides[index]) return;
+    
     this.slides[this.currentSlide].classList.remove('active');
     this.currentSlide = index;
     this.slides[this.currentSlide].classList.add('active');
@@ -102,7 +138,21 @@ class HeroSlideshow {
   }
 
   destroy() {
+    if (this.isDestroyed) return;
+    this.isDestroyed = true;
+
+    // 1. Останавливаем таймер немедленно
     this.pause();
+
+    // 2. Удаляем все обработчики событий
+    this.eventListeners.forEach(({ element, event, handler }) => {
+      if (element) {
+        element.removeEventListener(event, handler);
+      }
+    });
+    this.eventListeners = [];
+
+    // 3. Очищаем ссылки на DOM-элементы для сборщика мусора
     this.container = null;
     this.slides = null;
     this.prevBtn = null;
@@ -111,18 +161,27 @@ class HeroSlideshow {
   }
 }
 
-// Инициализация
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => new HeroSlideshow());
-} else {
-  new HeroSlideshow();
+// --- Правильная инициализация и управление жизненным циклом ---
+
+let slideshowInstance = null;
+
+function initSlideshow() {
+  if (!slideshowInstance) {
+    slideshowInstance = new HeroSlideshow();
+  }
 }
 
-// Инициализация после загрузки DOM
+// Запуск при загрузке DOM
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    new HeroSlideshow();
-  });
+  document.addEventListener('DOMContentLoaded', initSlideshow);
 } else {
-  new HeroSlideshow();
+  initSlideshow();
 }
+
+// Гарантированная очистка при выгрузке страницы
+window.addEventListener('beforeunload', () => {
+  if (slideshowInstance) {
+    slideshowInstance.destroy();
+    slideshowInstance = null;
+  }
+});
