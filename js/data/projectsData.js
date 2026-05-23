@@ -140,8 +140,8 @@ const PROJECTS_DATA = {
     ]
   },
   8: {
-    title: 'Система дистанционного управления бортовыми кранами самолёта Ан-124-100',
-    category: 'Модификация',
+    title: 'Система дистанционного управления бортовыми погрузочными кранами самолёта Ан-124-100',
+    category: 'Модернизация',
     shortDescription: 'Замена проводных пультов управления БПК на систему дистанционного управления',
     details: [
       'Выполнен поиск и подбор оборудования, разработано и согласовано ЧТЗ для поставщика и техническое предложение',
@@ -163,115 +163,115 @@ const PROJECTS_DATA = {
     ]
   },
   9: {
-    title: '',
-    category: '',
-    shortDescription: '',
+    title: 'Замена антенны АШС-УД',
+    category: 'Модернизация',
+    shortDescription: 'В рамках работ по поддержанию летной годности самолета Ан-124-100 и в целях повышения качества и надежности радиосвязи в МВ-диапазоне в ВДИ была проведена работа по замене антенны АШС-УД из состава МВ-радиостанции Орлан-85СТ на импортный аналог.',
     details: [
-      '',
-      '',
-      '',
-      ''
+      'Выбрана МВ-антенны S65-8280-68 Sensor Systems Inc.для замены',
+      'Разработана конструкторская документация, предусматривающая монтаж вновь устанавливаемой антенны на штатных местах АШС-УД, через дополнительный элемент',
+      'Разработаны дополнения к эксплуатационной документации (РЛЭ, РЭ, РО), учитывающе использование обоих типов антенн на самолете'
     ],
     images: [
-      'assets/images/Projects/',
-      'assets/images/Projects/',
-      'assets/images/Projects/'
+      'assets/images/Projects/change_antenna/change_antenna1.jpg',
+      'assets/images/Projects/change_antenna/change_antenna2.jpg',
+      'assets/images/Projects/change_antenna/change_antenna3.jpg'
     ]
   },
   10: {
-    title: '',
-    category: '',
-    shortDescription: '',
+    title: 'Разработка оборудования для перевозки генеральных грузов',
+    category: 'Модификация',
+    shortDescription: 'Создание специализированного оборудования для перевозки генеральных грузов на самолёте Ан-124-100',
     details: [
-      '',
-      '',
-      '',
-      ''
+      'Разработана КД, организовано производство, проведены испытания и сертификация cкладных решёток для перевозки E-commerce, пассивного контейнера для перевозки термочувствительных грузов, системы для загрузки паллет и контейнеров в Ан-124-100'
     ],
     images: [
-      'assets/images/Projects/',
-      'assets/images/Projects/',
-      'assets/images/Projects/'
+      'assets/images/Projects/loading_equipment/loading_equipment1.png',
+      'assets/images/Projects/loading_equipment/loading_equipment2.png',
+      'assets/images/Projects/loading_equipment/loading_equipment3.png',
+      'assets/images/Projects/loading_equipment/loading_equipment4.png'
     ]
   },
   11: {
-    title: '',
-    category: '',
-    shortDescription: '',
+    title: 'Разработка средств наземного обслуживания и погрузочного оборудования',
+    category: 'Модификация',
+    shortDescription: 'Разработка средств наземного обслуживания (СНО) и оборудования для загрузки уникальных негабаритных грузов',
     details: [
-      '',
-      '',
-      '',
-      ''
+      'Разработана КД, проведены расчёты на прочность, организовано производство систем подъёма грузов, погрузочных эстакад, грузоносителей и ходовых частей, специального оборудования (для перевозки турбин, автомобилей и т.п.)'
     ],
     images: [
-      'assets/images/Projects/',
-      'assets/images/Projects/',
-      'assets/images/Projects/'
+      'assets/images/Projects/loading_equipment2/loading_equipment1.png',
+      'assets/images/Projects/loading_equipment2/loading_equipment2.png',
+      'assets/images/Projects/loading_equipment2/loading_equipment3.png',
+      'assets/images/Projects/loading_equipment2/loading_equipment4.png'
     ]
   },
   12: {
-    title: '',
-    category: '',
-    shortDescription: '',
+    title: 'Установка системы электроснабжения 230 В 50 Гц в кабинах самолета',
+    category: 'Модификация',
+    shortDescription: 'Модернизация системы электроснабжения 230 В 50 Гц в кабине сменного экипажа (КСЭ) и кабине обслуживающего персонала (КОП) выполнялась с целью создания комфортных условий пребывания и в связи с необходимостью использования ноутбуков, оргтехники, персональных мобильных устройств и зарядки аккумуляторов электроинструмента.',
     details: [
-      '',
-      '',
-      '',
-      ''
+      'Выполнен анализ системы и подбор используемого оборудования',
+      'Разработаны технические предложения  по установке системы электропитания 230 В 50 Гц суммарной мощностью не менее 4,0 кВА ',
+      'Разработана КД',
+      'Разработаны первичные сертификационные документы (СБ, Техническое описание, Программа сертификационных работ)'
     ],
     images: [
-      'assets/images/Projects/',
-      'assets/images/Projects/',
-      'assets/images/Projects/'
+      'assets/images/Projects/socket/socket1.webp',
+      'assets/images/Projects/socket/socket2.webp',
+      'assets/images/Projects/socket/socket3.webp'
     ]
   },
   13: {
-    title: '',
-    category: '',
-    shortDescription: '',
+    title: 'Замена внутреннего светотехнического оборудования',
+    category: 'Модернизация',
+    shortDescription: 'Разработка комплекта документации для замены светильников с целью повышения надежности используемого освещения и замены снятого с производства оборудования',
     details: [
-      '',
-      '',
-      '',
-      ''
+      'Выполнен анализ системы электроснабжения самолета Ан-124-100',
+      'Выполнен подбор оборудования для замены 348 светильников, проведена работа с поставщиками, подготовлено техническое предложение',
+      'Разработана КД (Электрические схемы, компоновочные схемы, установочная КД)',
+      'Разработаны первичные сертификационные документы (СБ, Техническое описание, Программа сертификационных работ)'
     ],
     images: [
-      'assets/images/Projects/',
-      'assets/images/Projects/',
-      'assets/images/Projects/'
+      'assets/images/Projects/lights/lights1.png',
+      'assets/images/Projects/lights/lights2.png',
+      'assets/images/Projects/lights/lights3.png',
+      'assets/images/Projects/lights/lights4.jpg',
+      'assets/images/Projects/lights/lights5.png',
+      'assets/images/Projects/lights/lights6.png',
+      'assets/images/Projects/lights/lights7.png',
+      'assets/images/Projects/lights/lights8.png',
+      'assets/images/Projects/lights/lights9.png'
     ]
   },
   14: {
-    title: '',
-    category: '',
-    shortDescription: '',
+    title: 'Модернизация бытового оборудования',
+    category: 'Модернизация',
+    shortDescription: 'Модернизация кабин сменного экипажа (КСЭ) и обслуживающего персонала (КОП) проводилась с целью улучшения условий работы и отдыха персонала, а также условий размещения лиц, сопровождающих груз на борту ВС, и повышения привлекательности самолёта для существующих и потенциальных заказчиков услуг грузоперевозок.',
     details: [
-      '',
-      '',
-      '',
-      ''
+      'Разработаны технические предложения по составу модернизируемого оборудования (диваны, спальные полки, столы, пассажирские кресла, стеллажи, буфетно-кухонное оборудование, туалетные модули, ковровые покрытия, аварийно-спасательное оборудование и др.)',
+      'Разработан эскизный проект',
+      'Разработаны первичные сертификационные документы (СБ, Техническое описание, Программа сертификационных работ)'
     ],
     images: [
-      'assets/images/Projects/',
-      'assets/images/Projects/',
-      'assets/images/Projects/'
+      'assets/images/Projects/cabins/cabins1.jpg',
+      'assets/images/Projects/cabins/cabins2.jpg',
+      'assets/images/Projects/cabins/cabins3.jpg'
     ]
   },
   15: {
-    title: '',
-    category: '',
-    shortDescription: '',
+    title: 'Модернизация систем водоснабжения и удаления отходов',
+    category: 'Модернизация',
+    shortDescription: 'Установка системы водоснабжения и удаления отходов в кабине сменного экипажа и в кабине обслуживающего персонала самолёта Ан-124-100 для обеспечения безопасного и комфортного размещения максимально допустимого количества людей на борту в течение 18 часов полёта',
     details: [
-      '',
-      '',
-      '',
-      ''
+      'Проведен расчет системы и подобраны компоненты',
+      'Разработаны технические предложения с несколькими вариантами реализации (установка туалетов рециркуляционного типа, замена сливных магистралей, трубопроводов водоснабжения, баков, панелей слива и заправки и др.)',
+      'Разработан эскизный проект',
+      'Разработаны первичные сертификационные документы (СБ, Техническое описание, Программа сертификационных работ)'
     ],
     images: [
-      'assets/images/Projects/',
-      'assets/images/Projects/',
-      'assets/images/Projects/'
+      'assets/images/Projects/lavatory/lavatory1.png',
+      'assets/images/Projects/lavatory/lavatory2.jpg',
+      'assets/images/Projects/lavatory/lavatory3.jpg'
     ]
   }
 };

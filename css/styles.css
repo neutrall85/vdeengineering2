@@ -1001,7 +1001,7 @@ body.app-ready>footer {
 
 .service-card:hover .service-icon {
   background: var(--vd);
-  transform: scale(1.05) rotate(5deg);
+  /* transform: scale(1.05) rotate(5deg); */
   fill: white;
 }
 
@@ -3202,23 +3202,46 @@ img.loading + .image-placeholder {
   justify-content: center;
   margin: 0 auto 1.25rem;
   transition: background var(--duration-normal) var(--ease-smooth);
-  border: 2px solid var(--vd-light-blue);   /* или любой цвет, например белый, или var(--vd) */
-  box-shadow: 0 0 0 2px rgba(0, 78, 150, 0.1); /* внешняя тень-окантовка */
+  border: 2px solid var(--vd-light-blue);
+  box-shadow: 0 0 0 2px rgba(0, 78, 150, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.feature-card:hover .feature-icon::before {
+  left: 100%;
 }
 
 .feature-card:hover .feature-icon {
   background: var(--vd);
+  box-shadow: 0 8px 25px rgba(0, 78, 150, 0.3);
+  transform: none;
 }
 
 .feature-icon svg {
-  width: 30px;
-  height: 30px;
+  width: 42px;
+  height: 42px;
   fill: var(--vd);
   transition: fill var(--duration-normal) var(--ease-smooth);
+  transition: all 0.4s var(--ease-smooth);
 }
 
 .feature-card:hover .feature-icon svg {
   fill: white;
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 8px rgba(0, 78, 150, 0.5));
 }
 
 .feature-card h3 {
@@ -3254,7 +3277,6 @@ img.loading + .image-placeholder {
   margin: 0 auto;
 }
 
-/* feature-card-box и feature-icon-circle удалены как дублирующие .feature-card и .feature-icon */
 .feature-title {
   color: var(--vd);
   margin-bottom: 0.75rem;
@@ -5074,15 +5096,15 @@ img.loading + .image-placeholder {
   }
 
   .service-icon {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     margin-bottom: 0.75rem;
     border-radius: 8px;
   }
 
   .service-icon svg {
-    width: 24px;
-    height: 24px;
+    width: 42px;
+    height: 42px;
   }
 
   /* Проекты - уплотняем */
