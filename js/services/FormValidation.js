@@ -336,6 +336,17 @@ const FormValidation = (function() {
         this.form.removeEventListener('submit', this._submitHandler);
         this._submitHandler = null;
       }
+      
+      // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Физическое удаление элементов ошибок из DOM
+      // Это предотвращает утечку памяти и накопление "висячих" элементов в DOM
+      this.fields.forEach((fieldData, name) => {
+        const errorId = `${name}Error`;
+        const errorElement = document.getElementById(errorId);
+        if (errorElement && errorElement.parentNode) {
+          errorElement.parentNode.removeChild(errorElement);
+        }
+      });
+      
       this.fields.forEach((fieldData) => {
         const { element, handlers } = fieldData;
         // ПРОВЕРКА: элемент должен существовать перед удалением обработчиков
