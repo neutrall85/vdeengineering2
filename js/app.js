@@ -375,10 +375,10 @@ class Application {
 
     const scrollToTarget = () => {
       setTimeout(() => {
-        const offset = 80;
+        const offset = window.CONFIG?.NAVIGATION?.HASH_SCROLL_OFFSET || 80;
         const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
-      }, 400);
+      }, window.CONFIG?.PERFORMANCE?.HASH_SCROLL_DELAY_MS || 400);
     };
 
     const onComponentsLoaded = () => {
@@ -477,11 +477,39 @@ class Application {
       this.services.consentManager.destroy();
     }
     
+    // ОЧИСТКА ГЛОБАЛЬНЫХ ФУНКЦИЙ - добавляем cleanupGlobals
+    this._cleanupGlobals();
+    
     // Очищаем ссылки
     this.modules = [];
     this.errors = [];
     this.services = {};
     this.initialized = false;
+  }
+  
+  /**
+   * Очистка глобальных функций window установленных в _initGlobalHelpers
+   */
+  _cleanupGlobals() {
+    const globalFunctions = [
+      'scrollToTop',
+      'toggleMobileMenu',
+      'closeModal',
+      'removeFile',
+      'closeMobileMenu',
+      'closeAboutModal',
+      'closeDetailsModal',
+      'closeNewsModal',
+      'closePolicyModal',
+      'toggleWidget',
+      'openDetailsModal'
+    ];
+    
+    globalFunctions.forEach(fnName => {
+      if (typeof window[fnName] === 'function') {
+        delete window[fnName];
+      }
+    });
   }
 }
 
@@ -508,7 +536,7 @@ function initApp() {
   const hasUtils = typeof window.Utils !== 'undefined';
   
   if (!hasConfig || !hasServices || !hasUtils) {
-    setTimeout(() => initApp(), 100);
+    setTimeout(() => initApp(), window.CONFIG?.PERFORMANCE?.INIT_APP_DELAY_MS || 100);
     return;
   }
   

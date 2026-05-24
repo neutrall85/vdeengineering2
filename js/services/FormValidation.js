@@ -338,11 +338,14 @@ const FormValidation = (function() {
       }
       this.fields.forEach((fieldData) => {
         const { element, handlers } = fieldData;
-        if (handlers) {
+        // ПРОВЕРКА: элемент должен существовать перед удалением обработчиков
+        if (element && handlers) {
           element.removeEventListener(handlers.eventType, handlers.input);
           element.removeEventListener('blur', handlers.blur);
           fieldData.handlers = null;
         }
+        // Очищаем ссылку на элемент чтобы избежать утечек
+        fieldData.element = null;
       });
       this.fields.clear();
       this.errors.clear();

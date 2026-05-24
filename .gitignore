@@ -1,48 +1,40 @@
 ```
-# Compiled and build artifacts
-*.pyc
-__pycache__/
-*.o
-*.obj
+# Dependencies
+node_modules/
+
+# Build artifacts
 dist/
 build/
-target/
-
-# Dependencies
-.venv/
-venv/
-node_modules/
-.julia/
-zig*/
-.mypy_cache/
-.pytest_cache/
-.gradle/
-
-# Logs and temp files
-*.log
-*.tmp
-*.swp
-*.swo
 
 # Environment
 .env
 .env.local
-.env.*
+*.env.*
+
+# Logs and temp files
+*.log
+*.tmp
 
 # Editors
 .vscode/
 .idea/
 
-# System files
-.DS_Store
-Thumbs.db
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-# Coverage
-coverage/
-htmlcov/
-.coverage
+# Compiled files
+*.o
+*.obj
+*.so
+*.a
+*.dll
+*.exe
+*.out
 
-# Compressed files
+# Compression
 *.zip
 *.gz
 *.tar
@@ -65,4 +57,96 @@ htmlcov/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+htmlcov/
+.coverage
+.pytest_cache/
+.mypy_cache/
+
+# Java/Maven
+target/
+.gradle/
+*.class
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+
+# C/C++
+*.a
+*.lib
+*.obj
+*.o
+*.out
+*.dll
+*.so
+*.dylib
+*.exe
+*.bin
+*.out
+
+# Ruby
+*.gem
+*.rbc
+.bundle/
+vendor/bundle/
+tmp/
+
+# Rust
+Cargo.lock
+target/
+
+# Node.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Bower
+bower_components/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask
+instance/
+.webassets-cache
+
+# Jekyll
+_site/
+.jekyll-metadata
+
+# Code coverage
+coverage.xml
+*.gcov
+*.lcov
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# IDE
+.vs/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 ```

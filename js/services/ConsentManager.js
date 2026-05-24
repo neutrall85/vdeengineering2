@@ -30,7 +30,8 @@ const ConsentManager = {
     settingsIcon: null,
     observer: null,
     recoveryTimer: null,
-    eventBus: null
+    eventBus: null,
+    _destroyed: false
   },
 
   /**
@@ -374,6 +375,9 @@ const ConsentManager = {
    * Планирование восстановления баннера через 2 секунды
    */
   _scheduleRecovery() {
+    // ПРОВЕРКА: не выполняем восстановление если менеджер уничтожен
+    if (this.state._destroyed) return;
+    
     if (this.state.recoveryTimer) {
       clearTimeout(this.state.recoveryTimer);
     }
@@ -381,6 +385,9 @@ const ConsentManager = {
     const storage = window.Services.storage;
     
     this.state.recoveryTimer = setTimeout(() => {
+      // ПОВТОРНАЯ ПРОВЕРКА: таймер мог сработать после destroy()
+      if (this.state._destroyed) return;
+      
       const consent = this.getConsent(storage);
       if (!consent && !document.getElementById('user-notice-banner')) {
         Logger.INFO('[ConsentManager] Recovering banner...');
@@ -393,6 +400,9 @@ const ConsentManager = {
    * Очистка ресурсов при уничтожении
    */
   destroy() {
+    // Устанавливаем флаг destroyed для предотвращения выполнения таймеров
+    this.state._destroyed = true;
+    
     if (this.state.observer) {
       this.state.observer.disconnect();
       this.state.observer = null;
@@ -401,6 +411,10 @@ const ConsentManager = {
       clearTimeout(this.state.recoveryTimer);
       this.state.recoveryTimer = null;
     }
+    // Очищаем ссылки на DOM элементы
+    this.state.banner = null;
+    this.state.settingsIcon = null;
+    this.state.eventBus = null;
   }
 };
 

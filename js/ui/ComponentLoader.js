@@ -52,7 +52,7 @@ const ComponentLoader = {
 
         // Вызываем callback после полной загрузки
         if (callback) {
-            setTimeout(callback, 50);
+            setTimeout(callback, window.CONFIG?.PERFORMANCE?.COMPONENT_LOAD_DELAY_MS || 50);
         }
     },
 
