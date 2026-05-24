@@ -243,6 +243,15 @@ class Application {
       }
     };
     
+    // Обработчик авто-ресайза textarea
+    this._boundInputHandler = (e) => {
+      if (e.target.tagName === 'TEXTAREA' && e.target.classList.contains('form-textarea')) {
+        e.target.style.height = 'auto';
+        e.target.style.height = (e.target.scrollHeight) + 'px';
+      }
+    };
+    document.addEventListener('input', this._boundInputHandler);
+    
     // Обработчики открытия модалок теперь централизованы в ModalManager через data-modal-open
   }
 
@@ -458,6 +467,12 @@ class Application {
       floatingBtn.removeEventListener('click', this._boundFloatingBtnClick);
     }
     
+    // Удаляем глобальный обработчик input для textarea
+    if (this._boundInputHandler) {
+      document.removeEventListener('input', this._boundInputHandler);
+      this._boundInputHandler = null;
+    }
+    
     // Делегируем очистку модулям
     if (this.services.navigationManager && typeof this.services.navigationManager.destroy === 'function') {
       this.services.navigationManager.destroy();
@@ -618,9 +633,3 @@ if (document.readyState === 'loading') {
   initApp();
 }
 
-document.addEventListener('input', function(e) {
-  if (e.target.tagName === 'TEXTAREA' && e.target.classList.contains('form-textarea')) {
-    e.target.style.height = 'auto';
-    e.target.style.height = (e.target.scrollHeight) + 'px';
-  }
-});
