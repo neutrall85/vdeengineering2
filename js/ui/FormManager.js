@@ -13,6 +13,7 @@ class FormManager {
     this.consentCheckboxes = null;
     this.submitBtn = null;
     this._consentHandlers = null;
+    this._fileHandlers = new Map(); // Хранилище обработчиков файлов для очистки
   }
 
   init() {
@@ -98,39 +99,54 @@ class FormManager {
     const root = container || document;
     const fileDrops = root.querySelectorAll('.form-file');
     
-    fileDrops.forEach(fileDrop => {
+    fileDrops.forEach((fileDrop, index) => {
       const fileInput = fileDrop.querySelector('input[type="file"]');
       if (!fileInput) return;
 
       fileInput.setAttribute('multiple', 'multiple');
       
-      if (fileInput._changeHandlerAttached) return;
+      // Проверяем, были ли уже добавлены обработчики для этого элемента
+      const handlerKey = `fileDrop_${index}`;
+      if (this._fileHandlers.has(handlerKey)) return;
       
-      fileInput.addEventListener('change', (e) => {
+      // Создаем bound обработчики для возможности удаления
+      const changeHandler = (e) => {
         this._handleFileSelect(e.target.files, fileDrop);
-      });
-      fileInput._changeHandlerAttached = true;
-
-      if (fileDrop._dragDropHandlerAttached) return;
+      };
       
-      fileDrop.addEventListener('dragover', (e) => {
+      const dragOverHandler = (e) => {
         e.preventDefault();
         fileDrop.style.borderColor = 'var(--vd-blue)';
         fileDrop.style.background = 'rgba(0, 51, 160, 0.05)';
-      });
-
-      fileDrop.addEventListener('dragleave', () => {
+      };
+      
+      const dragLeaveHandler = () => {
         fileDrop.style.borderColor = '';
         fileDrop.style.background = '';
-      });
-
-      fileDrop.addEventListener('drop', (e) => {
+      };
+      
+      const dropHandler = (e) => {
         e.preventDefault();
         fileDrop.style.borderColor = '';
         fileDrop.style.background = '';
         this._handleFileSelect(e.dataTransfer.files, fileDrop);
+      };
+      
+      // Добавляем обработчики
+      fileInput.addEventListener('change', changeHandler);
+      fileDrop.addEventListener('dragover', dragOverHandler);
+      fileDrop.addEventListener('dragleave', dragLeaveHandler);
+      fileDrop.addEventListener('drop', dropHandler);
+      
+      // Сохраняем ссылки на обработчики для последующего удаления
+      this._fileHandlers.set(handlerKey, {
+        fileInput,
+        fileDrop,
+        changeHandler,
+        dragOverHandler,
+        dragLeaveHandler,
+        dropHandler
       });
-      fileDrop._dragDropHandlerAttached = true;
     });
   }
 
