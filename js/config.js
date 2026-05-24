@@ -7,7 +7,11 @@ const CONFIG = {
   PERFORMANCE: {
     SCROLL_DEBOUNCE_MS: 10,
     ANIMATION_THRESHOLD: 100,
-    RESIZE_DEBOUNCE_MS: 150
+    RESIZE_DEBOUNCE_MS: 150,
+    COMPONENT_LOAD_DELAY_MS: 50,
+    MODAL_FOCUS_DELAY_MS: 100,
+    HASH_SCROLL_DELAY_MS: 400,
+    INIT_APP_DELAY_MS: 100
   },
   NAVIGATION: {
     SCROLL_HEADER_THRESHOLD: 100,
@@ -23,7 +27,8 @@ const CONFIG = {
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       'application/vnd.ms-excel',
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    ]
+    ],
+    WARNING_AUTO_HIDE_MS: 5000
   },
   ANIMATION: {
     COUNTER_STEPS: 100,
@@ -44,6 +49,10 @@ const CONFIG = {
   },
   YANDEX: {
     METRIKA_COUNTER_ID: '109146519'
+  },
+  API: {
+    TIMEOUT_MS: 30000,
+    SIMULATED_DELAY_MS: 500
   },
   DEBUG: false
 };

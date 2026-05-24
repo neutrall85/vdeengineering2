@@ -67,7 +67,7 @@ class FormManager {
       const warning = document.getElementById('rateLimitWarning');
       if (warning) {
         warning.classList.add('show');
-        setTimeout(() => warning.classList.remove('show'), 5000);
+        setTimeout(() => warning.classList.remove('show'), window.CONFIG?.FORM?.WARNING_AUTO_HIDE_MS || 5000);
       }
       return;
     }

@@ -34,6 +34,7 @@ class ModalManager {
    * Настраивает клик по overlay для закрытия модалки
    * Клик обрабатывается только если цель - сам overlay (а не контент внутри)
    * Также добавляет кнопку закрытия в модалку если её нет
+   * РЕФАКТОРИНГ: убрано дублирование обработчиков через проверку флага
    */
   _setupOverlayClick(key) {
     const config = this.modals.get(key);
@@ -44,9 +45,10 @@ class ModalManager {
     // Добавляем кнопку закрытия если её ещё нет
     this._ensureCloseButton(overlay);
     
-    // Проверяем, не был ли уже добавлен обработчик
+    // Проверяем, не был ли уже добавлен обработчик (защита от дублирования)
     if (overlay._clickHandlerAttached) return;
     
+    // Единый делегированный обработчик для всех overlay
     const clickHandler = (e) => {
       // Защита от XSS: проверяем что e.target существует и является элементом
       if (!e.target || !e.target.nodeType) return;
@@ -355,7 +357,7 @@ class ModalManager {
           : overlay.querySelector('.modal-close, button, [href], input, select, textarea');
       
       if (focusTarget) {
-        setTimeout(() => focusTarget.focus(), 100);
+        setTimeout(() => focusTarget.focus(), window.CONFIG?.PERFORMANCE?.MODAL_FOCUS_DELAY_MS || 100);
       }
 
       // Инициализируем focus trap для доступности
