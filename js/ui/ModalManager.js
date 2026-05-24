@@ -231,7 +231,7 @@ class ModalManager {
       const vacancyDepartment = vacancyCard?.querySelector('.vacancy-department')?.textContent || '';
       
       if (modalTitle) modalTitle.textContent = `Отклик на вакансию: ${vacancyTitle}`;
-      if (modalSubtitle) modalSubtitle.textContent = vacancyDepartment ? `${vacancyDepartment} — Заполните форму ниже, и мы рассмотрим вашу кандидатуру` : 'Заполните форму ниже, и мы рассмотрим вашу кандидатуру';
+      if (modalSubtitle) modalSubtitle.textContent = 'Заполните форму ниже, и мы рассмотрим вашу кандидатуру';
       if (submitBtnText) submitBtnText.textContent = 'Отправить отклик';
       if (successTitle) successTitle.textContent = 'Отклик отправлен!';
     }
