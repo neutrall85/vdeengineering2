@@ -16,6 +16,7 @@ class NewsManager {
     this._lightboxKeydownHandler = null;
     this._lightboxImageClickHandler = null;
     this._cardClickHandler = null;
+    this._boundLoadHandler = null;
   }
 
   init() {
@@ -28,7 +29,8 @@ class NewsManager {
     if (document.readyState === 'complete') {
       this._initLightbox();
     } else {
-      window.addEventListener('load', () => this._initLightbox());
+      this._boundLoadHandler = () => this._initLightbox();
+      window.addEventListener('load', this._boundLoadHandler);
     }
   }
 
@@ -287,6 +289,12 @@ class NewsManager {
   }
 
   destroy() {
+    // Удаляем обработчик загрузки страницы
+    if (this._boundLoadHandler) {
+      window.removeEventListener('load', this._boundLoadHandler);
+      this._boundLoadHandler = null;
+    }
+    
     // Удаляем обработчики лайтбокса
     if (this._lightboxModalClickHandler) {
       const modalImage = document.getElementById('newsModalImage');
