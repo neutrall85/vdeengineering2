@@ -477,6 +477,11 @@ class Application {
       this.services.consentManager.destroy();
     }
     
+    // Вызываем destroy у UniversalApplicationModalManager если он существует
+    if (typeof UniversalApplicationModalManager !== 'undefined' && typeof UniversalApplicationModalManager.destroy === 'function') {
+      UniversalApplicationModalManager.destroy();
+    }
+    
     // ОЧИСТКА ГЛОБАЛЬНЫХ ФУНКЦИЙ - добавляем cleanupGlobals
     this._cleanupGlobals();
     
