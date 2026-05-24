@@ -306,7 +306,7 @@ class Application {
     const lazyImages = document.querySelectorAll('img[data-src]');
     
     if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver((entries) => {
+      this.imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const img = entry.target;
@@ -316,12 +316,12 @@ class Application {
               img.removeAttribute('data-src');
               img.classList.add('loaded');
             }
-            imageObserver.unobserve(img);
+            this.imageObserver.unobserve(img);
           }
         });
       }, { rootMargin: '100px' });
       
-      lazyImages.forEach(img => imageObserver.observe(img));
+      lazyImages.forEach(img => this.imageObserver.observe(img));
     } else {
       lazyImages.forEach(img => {
         const src = img.getAttribute('data-src');
@@ -382,13 +382,11 @@ class Application {
     };
 
     const onComponentsLoaded = () => {
-      document.removeEventListener('components:loaded', onComponentsLoaded);
       scrollToTarget();
     };
 
-    document.addEventListener('components:loaded', onComponentsLoaded);
+    document.addEventListener('components:loaded', onComponentsLoaded, { once: true });
     setTimeout(() => {
-      document.removeEventListener('components:loaded', onComponentsLoaded);
       scrollToTarget();
     }, 800);
   }
@@ -446,6 +444,12 @@ class Application {
     // Отключаем IntersectionObserver для hero секции
     if (this._heroObserver) {
       this._heroObserver.disconnect();
+    }
+    
+    // Отключаем IntersectionObserver для ленивой загрузки изображений
+    if (this.imageObserver) {
+      this.imageObserver.disconnect();
+      this.imageObserver = null;
     }
     
     // Удаляем обработчик плавающей кнопки CTA
