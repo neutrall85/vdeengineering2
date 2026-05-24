@@ -16,6 +16,7 @@ class ModalManager {
     this.cleanupHandlers = new Map();
     this._boundKeyHandler = null;
     this._boundFocusTrapHandler = null;
+    this._handlersInitialized = false;
     this._initGlobalHandlers();
   }
 
@@ -100,8 +101,14 @@ class ModalManager {
    * Инициализирует глобальные обработчики событий:
    * - KeyboardEvent (Escape) для закрытия активной модалки
    * - ClickEvent для кнопок .modal-close
+   * Защита от повторной инициализации через флаг _handlersInitialized
    */
   _initGlobalHandlers() {
+    // Защита от повторной инициализации обработчиков
+    if (this._handlersInitialized) {
+      return;
+    }
+    
     // Обработчик нажатия клавиш (Escape)
     this._boundKeyHandler = (e) => {
       if (e.key !== 'Escape') return;
@@ -166,6 +173,9 @@ class ModalManager {
       this._handleModalOpen(modalType, trigger);
     };
     document.addEventListener('click', this._boundOpenHandler, { capture: false });
+    
+    // Устанавливаем флаг после успешной инициализации
+    this._handlersInitialized = true;
   }
 
   /**
@@ -484,12 +494,15 @@ class ModalManager {
   destroy() {
     if (this._boundKeyHandler) {
       document.removeEventListener('keydown', this._boundKeyHandler);
+      this._boundKeyHandler = null;
     }
     if (this._boundClickHandler) {
       document.removeEventListener('click', this._boundClickHandler);
+      this._boundClickHandler = null;
     }
     if (this._boundOpenHandler) {
       document.removeEventListener('click', this._boundOpenHandler);
+      this._boundOpenHandler = null;
     }
     
     // Удаляем focus trap если активен
@@ -507,6 +520,9 @@ class ModalManager {
     this.modals.clear();
     this.activeModal = null;
     this.activeModalStack = [];
+    
+    // Сбрасываем флаг инициализации для возможности повторной инициализации
+    this._handlersInitialized = false;
   }
 }
 

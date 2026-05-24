@@ -415,6 +415,10 @@ function destroyProjectsPage() {
     _projectsPageHandlers.renderer = null;
   }
   window._projectsPageInitialized = false;
+  
+  // Удаляем глобальные функции для предотвращения утечек памяти
+  delete window.openProjectModal;
+  delete window.initProjectGallery;
 }
 
 window.initProjectsPage = initProjectsPage;

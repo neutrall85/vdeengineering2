@@ -502,7 +502,9 @@ class Application {
       'closeNewsModal',
       'closePolicyModal',
       'toggleWidget',
-      'openDetailsModal'
+      'openDetailsModal',
+      'openProjectModal',
+      'initProjectGallery'
     ];
     
     globalFunctions.forEach(fnName => {
@@ -510,6 +512,14 @@ class Application {
         delete window[fnName];
       }
     });
+    
+    // Также очищаем глобальные функции UniversalApplicationModalManager если они существуют
+    if (typeof window.openApplicationModal === 'function') {
+      delete window.openApplicationModal;
+    }
+    if (typeof window.closeUniversalApplicationModal === 'function') {
+      delete window.closeUniversalApplicationModal;
+    }
   }
 }
 

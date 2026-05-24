@@ -145,6 +145,21 @@ const UniversalApplicationModalManager = {
                 }
             }, 150);
         }
+    },
+
+    /**
+     * Очистка ресурсов при уничтожении менеджера
+     */
+    destroy() {
+        // Удаляем глобальные функции для предотвращения утечек памяти
+        delete window.openApplicationModal;
+        delete window.closeUniversalApplicationModal;
+        
+        // Очищаем валидатор формы если он существует
+        if (this.formValidator && typeof this.formValidator.destroy === 'function') {
+            this.formValidator.destroy();
+        }
+        this.formValidator = null;
     }
 };
 
