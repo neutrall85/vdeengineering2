@@ -9,6 +9,7 @@ class FormManager {
     this.formValidator = null;
     this.isSubmitting = false;
     this.submitTimeoutId = null;
+    this.uploadWarningTimeout = null;
     this.consentCheckboxes = null;
     this.submitBtn = null;
     this._consentHandlers = null;
